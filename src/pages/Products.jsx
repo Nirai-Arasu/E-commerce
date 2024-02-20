@@ -3,17 +3,23 @@ import ProductsContainer from '../components/ProductsContainer';
 import { customFetch } from '../util';
 
 export const loader = async ({ request }) => {
-  const url = new URL(request.url);
-  const search = url.searchParams.get('search');
-  let newUrl = '/products';
-  if (search) {
-    newUrl += `?search=${search}`;
-  }
-  const { data } = await customFetch.get(newUrl);
+  let url = '/products';
+
+  // Use the entries directly without wrapping them in an array
+  const params = Object.fromEntries(
+    new URL(request.url).searchParams.entries()
+  );
+
+  console.log(params);
+
+  const { data } = await customFetch.get(url, { params });
+
   const products = data.data;
   const meta = data.meta;
-  return { products, meta };
+
+  return { products, meta, params };
 };
+
 const Products = () => {
   return (
     <>

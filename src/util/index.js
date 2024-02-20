@@ -9,8 +9,8 @@ export const customFetch = axios.create({
 export const formatPrice = (price) => {
   const dollarsAmmount = new Intl.NumberFormat('en-US', {
     style: 'currency',
-    currency: 'INR',
-  }).format((price / 10).toFixed(2));
+    currency: 'USD',
+  }).format((price / 100).toFixed(2));
   return dollarsAmmount;
 };
 
