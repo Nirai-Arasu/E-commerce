@@ -1,4 +1,5 @@
 import Filters from '../components/Filters';
+import PaginationContainer from '../components/PaginationContainer';
 import ProductsContainer from '../components/ProductsContainer';
 import { customFetch } from '../util';
 
@@ -20,6 +21,7 @@ const Products = () => {
     <>
       <Filters />
       <ProductsContainer />
+      <PaginationContainer />
     </>
   );
 };

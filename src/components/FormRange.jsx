@@ -5,10 +5,7 @@ import { formatPrice } from '../util';
 const FormRange = ({ label, name, price, isReset, setIsReset }) => {
   const step = 1000;
   const maxPrice = 100000;
-  console.log(price, maxPrice);
-  // const [selectedPrice, setSelectedPrice] = useState(
-  //   price !== undefined ? price : maxPrice
-  // );
+
   const [value, setValue] = useState(price || maxPrice);
   useEffect(() => {
     if (isReset) {
