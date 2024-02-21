@@ -1,5 +1,29 @@
+import { useEffect, useState } from 'react';
+
 /* eslint-disable react/prop-types */
-const FormSelect = ({ label, name, list, defaultValue, size }) => {
+useEffect;
+const FormSelect = ({
+  label,
+  name,
+  list,
+  defaultValue,
+  size,
+  isReset,
+  setIsReset,
+}) => {
+  const [value, setValue] = useState(defaultValue);
+
+  useEffect(() => {
+    if (isReset) {
+      setValue('');
+    }
+  }, [isReset]);
+  const onChangeHandler = (e) => {
+    if (isReset) {
+      setIsReset(false);
+    }
+    setValue(e.target.value);
+  };
   return (
     <div className="form-control">
       <label htmlFor={name} className="label">
@@ -9,6 +33,8 @@ const FormSelect = ({ label, name, list, defaultValue, size }) => {
         name={name}
         id={name}
         className={`select select-bordered ${size}`}
+        value={value}
+        onChange={onChangeHandler}
         defaultValue={defaultValue}>
         {list.map((item) => {
           return (
