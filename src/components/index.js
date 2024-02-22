@@ -3,5 +3,14 @@ import Header from './Header';
 import Loading from './Loading';
 import Navbar from './Navbar';
 import SubmitBtn from './SubmitBtn';
-
-export { FormInput, SubmitBtn, Header, Navbar, Loading };
+import CartItemList from './CartItemList';
+import CartTotals from './CartTotals';
+export {
+  FormInput,
+  SubmitBtn,
+  Header,
+  Navbar,
+  Loading,
+  CartItemList,
+  CartTotals,
+};

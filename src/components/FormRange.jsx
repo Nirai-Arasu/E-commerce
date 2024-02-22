@@ -1,21 +1,14 @@
 /* eslint-disable react/prop-types */
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { formatPrice } from '../util';
-const FormRange = ({ label, name, price, isReset, setIsReset }) => {
+const FormRange = ({ label, name, price }) => {
   const step = 1000;
   const maxPrice = 100000;
 
   const [value, setValue] = useState(price || maxPrice);
-  useEffect(() => {
-    if (isReset) {
-      setValue(maxPrice);
-    }
-  }, [isReset]);
+
   const onChangeHandler = (e) => {
-    if (isReset) {
-      setIsReset(false);
-    }
     setValue(e.target.value);
   };
   return (

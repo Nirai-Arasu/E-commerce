@@ -1,9 +1,7 @@
 /* eslint-disable react/prop-types */
 
-import { useState } from 'react';
-
 const FormCheckbox = ({ name, label, defaultValue }) => {
-  const [isFreeShipping, setIsFreeShipping] = useState(defaultValue);
+  console.log(defaultValue, 'nirai');
   return (
     <label htmlFor={name} className="label form-control cursor-pointer">
       <span className="label-text mb-2">{label}</span>
@@ -12,8 +10,7 @@ const FormCheckbox = ({ name, label, defaultValue }) => {
         name={name}
         id={name}
         className="checkbox checkbox-primary checkbox-sm"
-        checked={isFreeShipping}
-        onChange={() => setIsFreeShipping(!isFreeShipping)}
+        defaultChecked={defaultValue}
       />
     </label>
   );

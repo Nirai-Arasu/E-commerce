@@ -1,28 +1,6 @@
-import { useEffect, useState } from 'react';
-
 /* eslint-disable react/prop-types */
 
-const FormInput = ({
-  label,
-  type,
-  name,
-  defaultValue,
-  size,
-  isReset,
-  setIsReset,
-}) => {
-  const [value, setValue] = useState(defaultValue);
-  useEffect(() => {
-    if (isReset) {
-      setValue('');
-    }
-  }, [isReset]);
-  const onChangeHandler = (e) => {
-    if (isReset) {
-      setIsReset(false);
-    }
-    setValue(e.target.value);
-  };
+const FormInput = ({ label, type, name, defaultValue, size }) => {
   return (
     <div className="form-control">
       <label className="label" htmlFor={name}>
@@ -33,9 +11,7 @@ const FormInput = ({
         type={type}
         id={name}
         name={name}
-        value={value}
         defaultValue={defaultValue}
-        onChange={onChangeHandler}
       />
     </div>
   );

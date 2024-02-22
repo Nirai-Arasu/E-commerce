@@ -1,6 +1,8 @@
 import { NavLink, useLoaderData } from 'react-router-dom';
 import { customFetch, formatPrice, range } from '../util';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addItem } from '../features/cart/cartSlice';
 
 export const loader = async ({ params }) => {
   const id = params.id;
@@ -11,12 +13,26 @@ export const loader = async ({ params }) => {
 const SingleProduct = () => {
   const data = useLoaderData();
   const { company, description, image, price, title, colors } = data.attributes;
+  const dispatch = useDispatch();
 
   const [selectedColor, setSelectedColor] = useState(colors[0]);
-  // eslint-disable-next-line no-unused-vars
   const [amount, setAmount] = useState(1);
+
   const handleAmount = (e) => {
     setAmount(parseInt(e.target.value));
+  };
+  const cartItem = {
+    cartId: data.id + selectedColor,
+    productId: data.id,
+    image,
+    title,
+    price,
+    company,
+    selectedColor,
+    amount,
+  };
+  const addToCart = () => {
+    dispatch(addItem(cartItem));
   };
   const dollarsAmmount = formatPrice(price);
   return (
@@ -81,7 +97,9 @@ const SingleProduct = () => {
             </select>
           </div>
           <div className="mt-10">
-            <button className="btn btn-secondary btn-md">ADD TO BAG</button>
+            <button className="btn btn-secondary btn-md" onClick={addToCart}>
+              ADD TO BAG
+            </button>
           </div>
         </div>
       </div>
