@@ -16,6 +16,7 @@ const CartItemList = () => {
             company={company}
             amount={amount}
             price={price}
+            cartId={cartId}
           />
         )
       )}

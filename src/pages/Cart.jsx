@@ -1,16 +1,31 @@
+import { useSelector } from 'react-redux';
 import { CartItemList, CartTotals } from '../components';
-
+import SectionTitle from '../components/SectionTitle';
+import { Link } from 'react-router-dom';
 const Cart = () => {
+  const user = null;
+  const { numberOfItemsInCart } = useSelector((store) => store.cart);
+  if (numberOfItemsInCart === 0) {
+    return <SectionTitle text="Your cart is empty" />;
+  }
   return (
     <>
-      <div className="border-b border-base-300 pb-5">
-        <h2 className="text-3xl font-medium tracking-wider capitalize">
-          Shopping Cart
-        </h2>
-      </div>
+      <SectionTitle text="Shopping Cart" />
+
       <div className="mt-8 grid gap-8 lg:grid-cols-12">
         <CartItemList />
-        <CartTotals />
+        <div className="lg:col-span-4 lg:pl-4">
+          <CartTotals />
+          {user ? (
+            <Link to="/checkout" className="btn btn-primary w-full mt-8">
+              PROCEED TO CHECKOUT
+            </Link>
+          ) : (
+            <Link to="/login" className="btn btn-primary w-full mt-8">
+              PLEASE LOGIN
+            </Link>
+          )}
+        </div>
       </div>
     </>
   );

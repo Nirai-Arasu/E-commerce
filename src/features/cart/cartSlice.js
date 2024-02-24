@@ -44,6 +44,8 @@ const cartSlice = createSlice({
       const { amount, cartId } = payload;
       const item = state.cartItems.find((item) => item.cartId === cartId);
 
+      state.cartTotal -= item.amount * item.price;
+      state.cartTotal += amount * item.price;
       state.numberOfItemsInCart += amount - item.amount;
       item.amount = amount;
       cartSlice.caseReducers.calculateTotal(state);
@@ -54,7 +56,13 @@ const cartSlice = createSlice({
     },
     calculateTotal: (state) => {
       state.tax = 0.1 * state.cartTotal;
-      state.orderTotal = state.cartTotal + state.tax;
+      console.log(
+        state.cartTotal + state.tax + state.shipping,
+        state.cartTotal,
+        state.tax,
+        state.shipping
+      );
+      state.orderTotal = state.cartTotal + state.tax + state.shipping;
       localStorage.setItem('cart', JSON.stringify(state));
     },
   },
