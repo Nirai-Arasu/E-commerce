@@ -3,7 +3,6 @@ import ProductGridCard from './ProductGridCard';
 
 const ProductsGrid = () => {
   const data = useLoaderData();
-  console.log(data, 'nirai');
 
   return (
     <div className="pt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">

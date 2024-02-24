@@ -3,7 +3,6 @@ import CartItem from './CartItem';
 
 const CartItemList = () => {
   const { cartItems } = useSelector((store) => store.cart);
-  console.log(cartItems, 'morao');
   return (
     <div className="lg:col-span-8">
       {cartItems.map(

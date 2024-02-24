@@ -17,7 +17,6 @@ export const formatPrice = (price) => {
 export const range = (start, end, step = 1) => {
   start = parseInt(start);
   end = parseInt(end);
-  console.log(start, end);
   let output = [];
   if (typeof end === 'undefined') {
     end = start;

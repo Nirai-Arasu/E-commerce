@@ -3,16 +3,13 @@ import { range } from '../util';
 
 const PaginationContainer = () => {
   const { meta } = useLoaderData();
-  console.log(meta);
   const { search, pathname } = useLocation();
   const navigate = useNavigate();
   const { pageCount, page } = meta.pagination;
-  console.log(search, pathname);
   const paginateHandler = (pageNumber) => {
     const params = new URLSearchParams(search);
     params.set('page', pageNumber);
     const newUrl = `${pathname}?${params}`;
-    console.log(newUrl);
     navigate(newUrl);
   };
   if (pageCount > 1) {

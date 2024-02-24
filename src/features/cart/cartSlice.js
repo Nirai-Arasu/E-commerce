@@ -52,16 +52,11 @@ const cartSlice = createSlice({
       toast.success('Cart updated');
     },
     clearCart: () => {
-      localStorage.setItem('cart', initialState);
+      localStorage.setItem('cart', JSON.stringify(initialState));
+      return initialState;
     },
     calculateTotal: (state) => {
       state.tax = 0.1 * state.cartTotal;
-      console.log(
-        state.cartTotal + state.tax + state.shipping,
-        state.cartTotal,
-        state.tax,
-        state.shipping
-      );
       state.orderTotal = state.cartTotal + state.tax + state.shipping;
       localStorage.setItem('cart', JSON.stringify(state));
     },
