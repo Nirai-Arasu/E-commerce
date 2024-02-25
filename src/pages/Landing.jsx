@@ -6,9 +6,19 @@ import { customFetch } from '../util/index.js';
 
 const url = '/products?featured=true';
 
-export const loader = async () => {
-  const { data } = await customFetch.get(url);
-  return data.data;
+const featuredProductsQuery = () => {
+  return {
+    queryKey: ['featured'],
+    queryFn: async () => {
+      const { data } = await customFetch.get(url);
+      return data.data;
+    },
+  };
+};
+
+export const loader = (queryClient) => async () => {
+  const data = queryClient.ensureQueryData(featuredProductsQuery());
+  return data;
 };
 
 const Landing = () => {

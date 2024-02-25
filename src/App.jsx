@@ -1,4 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
 import {
   About,
   Cart,
@@ -16,13 +18,21 @@ import { loader as landingLoader } from './pages/Landing';
 import { loader as SingleProductLoader } from './pages/SingleProduct';
 import { loader as ProuctsLoader } from './pages/Products';
 import { loader as checkoutLoader } from './pages/Checkout.jsx';
+import { loader as orderLoader } from './pages/Orders.jsx';
 import { action as registerAction } from './pages/Register';
-
-import ErrorElement from './pages/ErrorElement';
-import store from './store.js';
 import { action as loggedInAction } from './pages/Login.jsx';
 import { action as checkoutFormAction } from './components/CheckoutForm.jsx';
 
+import ErrorElement from './pages/ErrorElement';
+import store from './store.js';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5,
+    },
+  },
+});
 const router = createBrowserRouter([
   {
     path: '/',
@@ -32,7 +42,7 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Landing />,
-        loader: landingLoader,
+        loader: landingLoader(queryClient),
         errorElement: <ErrorElement />,
       },
       {
@@ -52,17 +62,18 @@ const router = createBrowserRouter([
       {
         path: 'orders',
         element: <Orders />,
+        loader: orderLoader(store),
       },
       {
         path: 'products',
         element: <Products />,
-        loader: ProuctsLoader,
+        loader: ProuctsLoader(queryClient),
         errorElement: <ErrorElement />,
       },
       {
         path: 'products/:id',
         element: <SingleProduct />,
-        loader: SingleProductLoader,
+        loader: SingleProductLoader(queryClient),
         errorElement: <ErrorElement />,
       },
     ],
@@ -81,6 +92,10 @@ const router = createBrowserRouter([
   },
 ]);
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+  );
 }
 export default App;
