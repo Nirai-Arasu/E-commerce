@@ -52,7 +52,7 @@ const Login = () => {
           label="Email"
           type="text"
           name="identifier"
-          defaultValue="demouser"
+          defaultValue=""
         />
         <FormInput
           label="Password"
