@@ -3,10 +3,11 @@ import { toast } from 'react-toastify';
 
 const daisyTheme = {
   light: 'winter',
-  dark: 'dark',
+  dark: 'night',
 };
 const getThemeFromLocalStorage = () => {
   const theme = localStorage.getItem('theme') || 'light';
+  console.log(daisyTheme[theme]);
   document.documentElement.setAttribute('data-theme', daisyTheme[theme]);
   return theme;
 };

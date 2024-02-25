@@ -62,7 +62,7 @@ const router = createBrowserRouter([
       {
         path: 'orders',
         element: <Orders />,
-        loader: orderLoader(store),
+        loader: orderLoader(store, queryClient),
       },
       {
         path: 'products',

@@ -5,7 +5,6 @@ dayjs.extend(advancedFormat);
 
 const OrderList = () => {
   const { data, meta } = useLoaderData();
-  console.log(data, meta);
   return (
     <div className="mt-8">
       <h4 className="mb-4 capitalize">

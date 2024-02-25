@@ -11,7 +11,7 @@ const CreatePaginationContainer = () => {
     const newUrl = `${pathname}?${params}`;
     navigate(newUrl);
   };
-  console.log(meta);
+
   if (pageCount > 1) {
     return (
       <div className="w-full mt-16 flex justify-center md:justify-end">
